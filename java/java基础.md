@@ -1,5 +1,5 @@
 
-##1.java 的 equals() 和 ==
+## 1.java 的 equals() 和 ==
 ***
 equals():字符串的比较
 ==      :地址的比较
@@ -12,7 +12,7 @@ str1.equlas(str2) //ture
 原理:str1和str2放入栈,new String("poi")放入堆
 ***
 
-##2.
+## 2.
 
 
 
