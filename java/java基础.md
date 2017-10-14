@@ -12,6 +12,8 @@ str1.equlas(str2) //ture
 原理:str1和str2放入栈,new String("poi")放入堆
 ***
 
+###2.
+
 
 
 <meta http-equiv="refresh" content="0.5">
