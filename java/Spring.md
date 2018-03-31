@@ -86,7 +86,15 @@ public class LogAspect{
 
 # Spring事务
 
+```
+//事务案例 : 
+buyBook(1)
+updateBook(-1)
+userAccount(-10)
+//如果userAccount(-10)抛出金额不够异常,但之前触发了updateBook(-1),数据库的书实际并没有见,但数据库的book数据-1,这是不应该发生的，所以需要加入@Transactional注解,理解为整个买书过程金额不够应发生回退
+```
 
+@Transactional : 添加事务注解,一般写在Service层
 
 
 
