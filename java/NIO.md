@@ -2,17 +2,13 @@
 
 JAVA NIO(New IO Non Blocking IO)  java 1.4引入的API,可替代JAVA IO API。NIO支持面向缓冲区,基于通道的IO操作。NIO以更高效的方式进行文件读写操作
 
-| IO | NIO |
-| --------   | -----:   | :----: |
-| 面向流(Stream Oriented) | 面向缓冲区(Buffer Oriented) |
-| 阻塞IO(Blocking IO) | 非阻塞IO(Non Blocking IO) |
-| 无 | 选择器(Selectors) |
+ IO | NIO 
+------------- | -------------
+ 面向流(Stream Oriented) | 面向缓冲区(Buffer Oriented) 
+ 阻塞IO(Blocking IO) | 非阻塞IO(Non Blocking IO) 
+ 无 | 选择器(Selectors) 
 
-## JAVA NIO核心
-
-## 通道(Channel) 
-打开IO设备(如文件,套接字)的连接,负责连接
-
+# JAVA NIO核心
 
 ## 缓冲区(Buffer) 
  负责存储,缓冲区就是数组,存储不同数据类型的数据
@@ -74,3 +70,6 @@ JAVA NIO(New IO Non Blocking IO)  java 1.4引入的API,可替代JAVA IO API。NI
  非直接缓冲区 : 通过allocate()方法分配缓冲区,将缓冲区建立在JVM的内存中
 
  直接缓冲区 : 通过allocateDirect()方法分配直接缓冲区,将缓冲区建立在物理内存中,提高效率
+
+ ## 通道(Channel) 
+打开IO设备(如文件,套接字)的连接,负责连接
