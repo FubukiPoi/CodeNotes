@@ -3,7 +3,7 @@
 JAVA NIO(New IO Non Blocking IO)  java 1.4引入的API,可替代JAVA IO API。NIO支持面向缓冲区,基于通道的IO操作。NIO以更高效的方式进行文件读写操作
 
  IO | NIO 
-------------- | -------------
+------------- | ------------- 
  面向流(Stream Oriented) | 面向缓冲区(Buffer Oriented) 
  阻塞IO(Blocking IO) | 非阻塞IO(Non Blocking IO) 
  无 | 选择器(Selectors) 
