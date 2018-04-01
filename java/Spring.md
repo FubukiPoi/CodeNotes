@@ -96,7 +96,9 @@ userAccount(-10)
 
 @Transactional : 添加事务注解,一般写在Service层
 
+# spring boot自动配置原理
 
+(待补充)
 
 
 
