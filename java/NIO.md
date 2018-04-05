@@ -92,7 +92,7 @@ Channel主要实现类
 //利用通道完成文件复制(非直接缓冲区)
 public class TestChannel{
 
-    public void Test(){
+    public void Test1(){
         FileInputStream fis = null;
         FileOutputStream fos = null;
         FileChannel inChannel = null;
@@ -124,24 +124,44 @@ public class TestChannel{
             fis.close();
         }
     }
-}
-```
 
-```
-//利用通道完成文件复制(内存映射文件)
-public class TestChannel{
-
-    public void Test() throws IOException{
+    //利用通道完成文件复制(内存映射文件)
+    public void Test2() throws IOException{
         FileChannel inChannel = FileChannel.open(Path.get("1.jpg",),StandarOpenOption.READ);
-        FileChannel outChannel = FileChannel.open(Path.get("2.jpg",),StandarOpenOption.WRITE,StandarOpenOption.CREATE_NEW);
+        FileChannel outChannel = FileChannel.open(Path.get("3.jpg",),StandarOpenOption.WRITE,StandarOpenOption.READ);
         //内存映射文件
         MappedByteBuffer inMappedBuf = inChannel.map(MapMode.READ_ONLY,0,inChannel.size());
         MappedByteBuffer outMapedBuf = outChannel.map(MapMode.READ_WRITE,0,inChannel.size());
+        //直接对缓冲区进行数据的读写操作
+        byte[] dst = new byte[inMappedBuf.limit()];
+        inMappedBuf.get(dst);
+        outMappedBuf.put(dst);
 
-
-
+        inChannel.close();
+        outChannel.close();
     }
 
-    
+    //
+}
+```
+
+## 分散(Scatter)和聚集(Gather)
+
+分散读取(Scatter Reads) : 将通道中的数据分散到多个缓冲区中
+
+聚集写入(Gather Writes) ：将多个缓冲区中的数据聚集到通道中
+
+```
+public class TestChannel{
+
+    //Scatter and Gather
+    public void Test() throws IOException{
+        RandomAccessFile raf1 = new RandomAccessFile("1.txt","rw");
+        FileChannel channel1 = new FileChannel();
+
+        ByteBuffer buf1 = ByteBuffer.allocate(100);
+        ByteBuffer buf2 = ByteBuffer.allocate(1024);
+    }
+
 }
 ```
