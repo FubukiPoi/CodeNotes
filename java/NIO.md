@@ -156,11 +156,29 @@ public class TestChannel{
 
     //Scatter and Gather
     public void Test() throws IOException{
+        //分散读取
         RandomAccessFile raf1 = new RandomAccessFile("1.txt","rw");
+        //获取通道
         FileChannel channel1 = new FileChannel();
-
+        //分配指定大小缓冲区
         ByteBuffer buf1 = ByteBuffer.allocate(100);
         ByteBuffer buf2 = ByteBuffer.allocate(1024);
+        //分散读取
+        ByteBuffer[] bufs = {buf1,buf2};
+        channel1.read(bufs);
+        for(ByteBuffer byteBuffer : bufs){
+            bufs.flip();
+        }
+        System.out.println(new String(bufs[0].array(),0,bufs[0].limit()));
+        System.out.println(new String(bufs[1].array(),0,bufs[1].limit()));
+
+        //聚集写入
+        RandomAccessFile raf2 = new RandomAccessFile("2.txt","rw");
+        //获取通道
+        FileChannel channel2 = new FileChannel();
+        channel2.write(bufs);
+        System.out.println(new String(bufs[0].array(),0,bufs[0].limit()));
+        System.out.println(new String(bufs[1].array(),0,bufs[1].limit()));
     }
 
 }
