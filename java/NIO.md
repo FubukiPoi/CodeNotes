@@ -89,4 +89,59 @@ Channel主要实现类
 
 
 ```
+//利用通道完成文件复制(非直接缓冲区)
+public class TestChannel{
+
+    public void Test(){
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        FileChannel inChannel = null;
+        FileChannel outChannel = null;
+
+        try{
+            fis = new FileInputStream("1.jpg");
+            fos = new FileOutputStream("2.jpg");
+        
+            //获取通道
+            inChannel = fis.getChannel();
+            outChannel = fos.getChannel();
+            //分配指定大小的缓冲区
+            ByteBuffer buf = ByteBuffer.allocate(1024);
+            //将通道中的数据存入缓冲区
+            while(inChannel.read(buf)!=-1){
+                buf.flip();//切换读取数据模式
+                //将缓冲区中的数据写入通道中
+                outChannel.write(buf);
+                buf.clear();
+        }
+            
+        }catch(){
+
+        }finally{
+            outChannel.close();
+            inChannel.close();
+            fos.close();
+            fis.close();
+        }
+    }
+}
+```
+
+```
+//利用通道完成文件复制(内存映射文件)
+public class TestChannel{
+
+    public void Test() throws IOException{
+        FileChannel inChannel = FileChannel.open(Path.get("1.jpg",),StandarOpenOption.READ);
+        FileChannel outChannel = FileChannel.open(Path.get("2.jpg",),StandarOpenOption.WRITE,StandarOpenOption.CREATE_NEW);
+        //内存映射文件
+        MappedByteBuffer inMappedBuf = inChannel.map(MapMode.READ_ONLY,0,inChannel.size());
+        MappedByteBuffer outMapedBuf = outChannel.map(MapMode.READ_WRITE,0,inChannel.size());
+
+
+
+    }
+
+    
+}
 ```
