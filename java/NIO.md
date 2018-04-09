@@ -183,3 +183,6 @@ public class TestChannel{
 
 }
 ```
+
+## NIO的阻塞和非阻塞
+
