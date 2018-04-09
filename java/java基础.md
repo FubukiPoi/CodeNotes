@@ -21,5 +21,14 @@ str1.equlas(str2) //ture
 
 ![avatar](https://github.com/FubukiPoi/Notes/blob/master/java/pic/threeHand.png)
 
+# TCP四次挥手过程
+
+ TCP连接的拆除,需要发送4个包
+ ![avatar](https://github.com/FubukiPoi/Notes/blob/master/java/pic/fourHand.png)
+
+ ## 为什么建立连接三次握手,关闭连接四次握手
+
+因为TCP连接是全双工的(即数据可在两个方向上同时传递)所以进行关闭时每个方向上都要单独进行关闭。这个单方向的关闭就叫半关闭。当一方完成它的数据发送任务，就发送一个FIN来向另一方通告将要终止这个方向的连接。
+
 
 
