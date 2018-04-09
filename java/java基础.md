@@ -19,7 +19,7 @@ str1.equlas(str2) //ture
 
 3. client收到server的确认报文后,还需作出确认,既发送一个序列号seq(A)=x+1;确认号ack(A)=y+1;的报文
 
-![avatar](/Notes/java/pic/threeHand.png)
+![avatar](https://github.com/FubukiPoi/Notes/blob/master/java/pic/threeHand.png)
 
 
 
