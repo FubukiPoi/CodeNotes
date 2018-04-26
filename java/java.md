@@ -10,7 +10,7 @@ String str2 = "poi";
 str1 == str2 //false
 str1.equlas(str2) //ture
 ```
- 原理:str1和str2放入栈,new String("poi")放入堆
+ 原理:str1和str2放入栈,new String("poi")放入堆,"poi"放入方法区
 
 # volatile底层实现原理
 
