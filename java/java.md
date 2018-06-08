@@ -34,11 +34,14 @@ volatile仅仅用来保证该变量对线程的可见性,但不保证原子性
 2. 不保证原子性:修改变量(赋值)实质上是在JVM中分了好几步,而在这几步内(从装载变量到修改),它是不安全的。
 
 
-# ThreadLocal 是什么底层如何实现
+# ThreadLocal（线程局部变量） 是什么底层如何实现
 
  ThreadLocal不是为了解决多线程访问共享变量,而是为每个线程创建一个单独的变量副本,提供了保持对象的方法和避免参数传递的复杂性。
- >https://blog.csdn.net/lovesomnus/article/details/64441426
+ > https://blog.csdn.net/lovesomnus/article/details/64441426
 
+假设有这样一个数据库链接管理类，这段代码在单线程中使用是没有任何问题的，但是如果在多线程中使用呢？很显然，在多线程中使用会存在线程安全问题：第一，这里面的2个方法都没有进行同步，很可能在openConnection方法中会多次创建connect；第二，由于connect是共享变量，那么必然在调用connect的地方需要使用到同步来保障线程安全，因为很可能一个线程在使用connect进行数据库操作，而另外一个线程调用closeConnection关闭链接。
+
+> ThreadLocal设计的目的就是为了能够在当前线程中有属于自己的变量，并不是为了解决并发或者共享变量的问题
 
 # 其他待补充
 面向对象编程的基本理念与核心设计思想解释下多态性（polymorphism），封装性（encapsulation），内聚（cohesion）以及耦合（coupling）。
@@ -127,17 +130,11 @@ LinkedList 与 ArrayList 的区别是什么？基础类型（Primitives）与封
 
 你是如何处理内存泄露或者栈溢出问题的？如何构建不可变的类结构？关键点在哪里？什么是 JIT 编译？Java 8 / Java 7 为我们提供了什么新功能？即将到来的 Java 9 又带来了怎样的新功能？Hibernate / 数据库请解释下 ORM。
 
-简述下 Hibernate 的优劣特性。
-
 Hibernate 与 JPA 区别在哪？Hibernate 最新版提供了哪些特性？什么是懒加载（Lazy Loading）？什么是 N+1 难题？介绍一些熟悉的 Hibernate 注释。
 
 简介下 Hibernate Session 与 SessionFactory。
 
 Entity Beans 的状态有哪些。
-
-Hibernate 中的缓存分为几层。
-
-Hibernate 中事务的支持分为几级？什么是乐观锁（Optimistic Locking）？简述下 ACID 原则。
 
 简述下数据库正则化（Normalizations）。
 
