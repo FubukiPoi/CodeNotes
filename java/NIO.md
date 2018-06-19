@@ -8,7 +8,9 @@ JAVA NIO(New IO Non Blocking IO)  java 1.4引入的API,可替代JAVA IO API。NI
  阻塞IO(Blocking IO) | 非阻塞IO(Non Blocking IO) 
  无 | 选择器(Selectors) 
 
-# JAVA NIO核心
+# JAVA NIO三个核心
+>buffer缓冲区Selector选择器
+
 
 ## 缓冲区(Buffer) 
  负责存储,缓冲区就是数组,存储不同数据类型的数据
@@ -23,7 +25,7 @@ JAVA NIO(New IO Non Blocking IO)  java 1.4引入的API,可替代JAVA IO API。NI
 
     capacity ：容量,缓冲区最大存储数据最大容量,一旦声明不可改变
 
-    limit : 界限,表示缓冲区中可以操作数据的大小(limite后数据不能进行读写)
+    limit : 界限,表示缓冲区中可以操作数据的大小(limit后数据不能进行读写)
 
     position : 位置,表示缓冲区中正在操作数据的位置
 
@@ -185,4 +187,5 @@ public class TestChannel{
 ```
 
 ## NIO的阻塞和非阻塞
-
+阻塞:的就没有Selector选择器了，就直接使用Channel和Buffer。
+非阻塞：
