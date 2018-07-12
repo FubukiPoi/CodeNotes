@@ -189,25 +189,39 @@ public class LeftRightDeadlock {
 - 如果等待获取锁时间超时，则抛出异常而不是一直等待！ 
 
 # synchronized修饰普通方法和static方法有什么不同
+### 1、对象锁
+当一个对象中有同步方法或者同步块，线程调用此对象进入该同步区域时，必须获得对象锁。如果此对象的对象锁被其他调用者占用，则进入阻塞队列，等待此锁被释放（同步块正常返回或者抛异常终止，由JVM自动释放对象锁）。
+注意，方法锁也是一种对象锁。当一个线程访问一个带synchronized方法时，由于对象锁的存在，所有加synchronized的方法都不能被访问（前提是在多个线程调用的是同一个对象实例中的方法）。
 synchronized{普通方法}依靠**对象锁**工作，多线程访问synchronized方法，一旦某个进程抢得锁之后，其他的进程只有排队对待。
 ```java
 //写法一修饰的是一个方法，写法二修饰的是一个代码块，但写法一与写法二是等价的，都是锁定了整个方法时的内容。
-public synchronized void method()
-{
-    dosomeThing();
-}
+public class object {
+	public synchronized void method1(){
+		System.out.println("我是对象锁也是方法锁");
+	}
 
-public synchronized void method()
-{
-    synchronized(this) {
-      dosomeThing();
-   }
+    public void method2(){
+		synchronized(this){
+			System.out.println("我是对象锁");
+		}
+	}
 }
 
 ```
+
+### 2、类锁
+一个class其中的静态方法和静态变量在内存中只会加载和初始化一份，所以，一旦一个静态的方法被申明为synchronized，此类的所有的实例化对象在调用该方法时，共用同一把锁，称之为类锁。
 synchronized{静态方法},静态方法是属于类的而不属于对象的。同样的，synchronized修饰的静态方法锁定的是这个类的所有对象。
 ```java
-public synchronized static void method() {
-   dosomeThing();
+public class object {
+	public static synchronized void method1(){
+		System.out.println("我是第一种类锁");
+	}
+
+    public void method2(){
+		synchronized (object.this) {
+			System.out.println("我是第二种类锁");
+		}
+	}
 }
 ```
