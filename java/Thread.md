@@ -186,4 +186,28 @@ public class LeftRightDeadlock {
 - 固定加锁的顺序(针对锁顺序死锁)
 - 开放调用(针对对象之间协作造成的死锁)
 - 使用定时锁-->tryLock()
-- 如果等待获取锁时间超时，则抛出异常而不是一直等待！
+- 如果等待获取锁时间超时，则抛出异常而不是一直等待！ 
+
+# synchronized修饰普通方法和static方法有什么不同
+synchronized{普通方法}依靠**对象锁**工作，多线程访问synchronized方法，一旦某个进程抢得锁之后，其他的进程只有排队对待。
+```java
+//写法一修饰的是一个方法，写法二修饰的是一个代码块，但写法一与写法二是等价的，都是锁定了整个方法时的内容。
+public synchronized void method()
+{
+    dosomeThing();
+}
+
+public synchronized void method()
+{
+    synchronized(this) {
+      dosomeThing();
+   }
+}
+
+```
+synchronized{静态方法},静态方法是属于类的而不属于对象的。同样的，synchronized修饰的静态方法锁定的是这个类的所有对象。
+```java
+public synchronized static void method() {
+   dosomeThing();
+}
+```

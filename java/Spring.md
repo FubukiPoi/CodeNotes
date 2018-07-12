@@ -117,6 +117,47 @@ userAccount(-10)
 
 (待补充)
 
+# springboot如何加载application.properties的？
+有一个监听器
+
+# springboot如何配置测试,生产,开发环境?
+
+springMVC可以使用@profile
+```java
+@Profile(value="prod")
+public class EnvProdConfig {
+
+}
+@Profile(value="test")
+public class EnvTestConfig {
+
+}
+@Profile(value="dev")
+public class EnvDevConfig {
+
+}
+```
+然后xml里配置
+```xml
+<context-param>
+    <param-name>spring.profiles.default</param-name>
+    <param-value>prod</param-value>
+</context-param>
+```
+
+springboot
+```
+配置三个properties
+application.properties
+application-dev.properties
+application-prod.properties
+application-test.properties
+
+然后在application.properites写入
+//开发/测试/生产环境分别对应dev/test/prod
+spring.profiles.active=dev
+```
+
 
 
 

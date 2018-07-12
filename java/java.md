@@ -19,6 +19,12 @@ str1.equlas(str2) //ture
 - 使用，new出对象程序中使用
 - 卸载，执行垃圾回收
 
+# Hash冲突
+hashmap.put("1","11");
+hashmap.put("2","11");
+
+1和2 hashcode一样就是hash冲突
+
 
 # 其他待补充
 面向对象编程的基本理念与核心设计思想解释下多态性（polymorphism），封装性（encapsulation），内聚（cohesion）以及耦合（coupling）。
