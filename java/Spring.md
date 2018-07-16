@@ -120,6 +120,8 @@ userAccount(-10)
 # springboot如何加载application.properties的？
 有一个监听器
 
+# spring加载xml的原理
+
 # springboot如何配置测试,生产,开发环境?
 
 springMVC可以使用@profile
