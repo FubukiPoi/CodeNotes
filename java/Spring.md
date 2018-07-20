@@ -19,6 +19,12 @@ BeanFactory : IoC 容器
 ApplicationContext : 为应用上下文或 Spring 容器
 >应用上下文（ com.springframework.context.ApplicationContext ）建立在 BeanFactory 基础之上，提供了更多面向应用的功能，它提供了国际化支持和框架事件体系，更易于创建实际应用 
 
+# Spring的加载机制？
+
+>1. java的框架的加载都是一个套路     包扫描，类加载，把被注解的注入进去ioc容器。所谓的ioc容器就是一个map，key是类，value是类的实例。基本上dao    service    controller都是单利的。扫描类中的field，给被@Autowierd注解的field赋值。
+
+>2. 容器不仅仅是存放组件,它最主要的功能是"管理组件的生命周期和依赖".
+
 
 # Spring支持3种注入方式
 
