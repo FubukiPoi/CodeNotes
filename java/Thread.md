@@ -1,8 +1,17 @@
-# 并发与并行
+# 线程的6种状态
+1. 初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
+2. 运行(RUNNABLE)：Java线程中将就绪（ready）和运行中（running）两种状态笼统的成为“运行”。
+线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权，此时处于就绪状态（ready）。就绪状态的线程在获得cpu 时间片后变为运行中状态（running）。
+3.阻塞(BLOCKED)：表线程阻塞于锁。
+4.等待(WAITING)：进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断）。
+5.超时等待(TIME_WAITING)：该状态不同于WAITING，它可以在指定的时间内自行返回。
+6. 终止(TERMINATED)：表示该线程已经执行完毕。
 
-1. 并行:表示两个线程同时做事情
+# wait()和sleep()区别
 
-2. 并发:表示一会做这个事,一会做另一个事,存在调度。
+1. wait()是object的方法,sleep()是Thread的方法
+2. wait()释放锁,sleep()不释放锁
+3. wait()需要采用notify()和notifyAll()唤醒
 
 # volatile底层实现原理
 
@@ -42,56 +51,6 @@ java编程语言允许线程访问共享变量，为了确保共享变量能够�
 
 > ThreadLocal设计的目的就是为了能够在当前线程中有属于自己的变量，并不是为了解决并发或者共享变量的问题
 
-# 线程池 
-```java
-public class threadPools {
-
-	public static void main(String[] args) {
-		//使用线程池花费 130ms
-		threadPool1();
-		//未使用线程池花费 7800ms
-		threadPool2();
-	}
-	
-	public static void threadPool1(){
-		final CountDownLatch countDownLatch = new CountDownLatch(50000);
-		long start = System.currentTimeMillis();
-		Executor pool = Executors.newFixedThreadPool(10);
-		for(int i = 0; i <50000; i++){
-			pool.execute(new Runnable() {
-				@Override
-				public void run() {
-					//System.out.println("hello");
-					countDownLatch.countDown();
-				}
-			});
-		}
-		
-		while(countDownLatch.getCount()!=0){}
-		long end = System.currentTimeMillis();
-		System.out.println(end-start);
-	}
-	
-	public static void threadPool2(){
-		final CountDownLatch countDownLatch = new CountDownLatch(50000);
-		long start = System.currentTimeMillis();
-		for(int i = 0; i <50000; i++){
-			Thread thread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					//System.out.println("hello");
-					countDownLatch.countDown();
-				}
-			});
-			thread.start();
-		}
-		
-		while(countDownLatch.getCount()!=0){}
-		long end = System.currentTimeMillis();
-		System.out.println(end-start);
-	}
-}
-```
 
 # 原子性
 >线程原子性操作，也就是在修改时我们只需要保证它的那个瞬间是安全的即可，经过相应的包装后可以再处理对象的并发修改

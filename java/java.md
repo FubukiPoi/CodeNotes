@@ -12,6 +12,11 @@ str1.equlas(str2) //ture
 ```
  原理:str1和str2放入栈,new String("poi")放入堆,"poi"放入方法区
 
+# String、StringBuffer与StringBuilder之间区别
+1.如果要操作少量的数据用 = String
+2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
+3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
+
 # Error与Exception的区别
 Error类和Exception类都是继承Throwable类
 Error和Exception就像是水池和水池里的水的区别
