@@ -17,6 +17,10 @@ str1.equlas(str2) //ture
 2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
 3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
 
+# 接口
+1. java类是单继承的。classB Extends classA
+2. java接口可以多继承。Interface3 Extends Interface0, Interface1, interface……
+
 # Error与Exception的区别
 Error类和Exception类都是继承Throwable类
 Error和Exception就像是水池和水池里的水的区别

@@ -12,6 +12,7 @@
 1. wait()是object的方法,sleep()是Thread的方法
 2. wait()释放锁,sleep()不释放锁
 3. wait()需要采用notify()和notifyAll()唤醒
+4. wait()通常被用于线程间交互，sleep()通常被用于暂停执行。
 
 # volatile底层实现原理
 
